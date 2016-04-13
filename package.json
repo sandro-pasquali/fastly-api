@@ -1,0 +1,25 @@
+{
+  "name": "fastly-api",
+  "version": "1.0.0",
+  "description": "Fastly client for Node.js",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "fastly",
+    "cache",
+    "cdn"
+  ],
+  "author": "Sandro Pasquali <spasquali@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "debug": "^2.2.0",
+    "lodash": "^4.10.0",
+    "request": "^2.71.0"
+  },
+  "devDependencies": {
+    "surveyor": "^2.0.1"
+  }
+}
