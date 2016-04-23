@@ -1,21 +1,12 @@
 'use strict';
 
 let debug = require('debug')('fastly-api-test');
-
-let apiKey = process.env.FASTLY_KEY;
-let service = process.env.FASTLY_SERVICE;
-
-if(!apiKey) {
-    return console.log('Cannot start. No FASTLY_KEY passed to ENV');
-}
-
-if(!service) {
-    return console.log('Cannot start. No FASTLY_SERVICE passed to ENV');
-}
+let config = require('config');
 
 let fastly = require('../../lib')({
-    apiKey: apiKey,
-    service: service
+    apiKey: config.key,
+    service: config.service,
+    version: config.version
 });
 
 module.exports = function(test, Promise) {
@@ -30,13 +21,13 @@ module.exports = function(test, Promise) {
             test.pass('purge.all ok');
         }
 
-        return fastly.purge.url('http://www.example.com/example.jpg', true);
-    })
-    .catch(err => {
-        test.fail(`purge.url failed ${err}`);
-    })
-    .then(res => {
+        return fastly.purge.url('http://fastboil.com.global.prod.fastly.net/testimage.jpg', true)
+        .then(res => {
 
-        test.pass('purge.url ok');
+            test.pass('purge.url ok');
+        })
+        .catch(err => {
+            test.fail(`purge.url failed ${err}`);
+        })
     })
 };
